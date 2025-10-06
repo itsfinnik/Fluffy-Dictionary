@@ -1,0 +1,34 @@
+{
+  "name": "furry-dictionary",
+  "version": "1.0.0",
+  "description": "Красивый интерактивный словарь фурри терминов с анимациями и тематическим оформлением",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 3000 -o",
+    "build": "echo 'Static site - no build needed'",
+    "dev": "npx http-server . -p 3000 -o",
+    "deploy": "echo 'Deploy to Netlify by dragging folder'"
+  },
+  "keywords": [
+    "furry",
+    "dictionary",
+    "фурри",
+    "словарь",
+    "термины",
+    "интерактивный",
+    "анимации"
+  ],
+  "author": "Furry Dictionary Team",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/furry-dictionary.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/furry-dictionary/issues"
+  },
+  "homepage": "https://your-username.github.io/furry-dictionary"
+}

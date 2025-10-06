@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фурри Словарь 🐾 - Интерактивный словарь фурри терминов</title>
+    <meta name="description" content="Красивый интерактивный словарь фурри терминов с анимациями. Изучай мир фурри терминологии, ищи переводы и описания.">
+    <meta name="keywords" content="фурри, словарь, термины, furry, dictionary, фурсона, фурсьют">
+    <meta name="author" content="Furry Dictionary Team">
+    <meta property="og:title" content="Фурри Словарь 🐾">
+    <meta property="og:description" content="Интерактивный словарь фурри терминов с красивыми анимациями">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-site.netlify.app">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Фурри Словарь 🐾">
+    <meta name="twitter:description" content="Интерактивный словарь фурри терминов">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="https://t.me/itsfinnik" class="creator-link" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    @itsfinnik
+                </a>
+            </div>
+            <div class="header-content">
+                <h1 class="logo">
+                    <i class="fas fa-paw"></i>
+                    Фурри Словарь
+                </h1>
+                <p class="subtitle">Изучай мир фурри терминологии</p>
+            </div>
+            <div class="floating-paws">
+                <div class="paw paw-1">🐾</div>
+                <div class="paw paw-2">🐾</div>
+                <div class="paw paw-3">🐾</div>
+                <div class="paw paw-4">🐾</div>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Поиск фурри терминов..." autocomplete="off">
+                    <button class="clear-btn" id="clearBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">Все</button>
+                    <button class="filter-btn" data-category="basic">Основные</button>
+                    <button class="filter-btn" data-category="behavior">Поведение</button>
+                    <button class="filter-btn" data-category="appearance">Внешность</button>
+                    <button class="filter-btn" data-category="community">Сообщество</button>
+                    <button class="filter-btn" data-category="nsfw">NSFW</button>
+                </div>
+                <div class="additional-controls">
+                    <div class="sort-controls">
+                        <label for="sortSelect">Сортировка:</label>
+                        <select id="sortSelect">
+                            <option value="alphabetical">По алфавиту</option>
+                            <option value="category">По категории</option>
+                            <option value="random">Случайно</option>
+                        </select>
+                    </div>
+                    <div class="view-controls">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                    <div class="stats-display">
+                        <span id="termCount">0 терминов</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terms Grid -->
+        <section class="terms-section">
+            <div class="terms-grid" id="termsGrid">
+                <!-- Terms will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- Loading Animation -->
+        <div class="loading" id="loading">
+            <div class="loading-paw">
+                <i class="fas fa-paw"></i>
+            </div>
+            <p>Загружаем термины...</p>
+        </div>
+
+        <!-- No Results -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-content">
+                <i class="fas fa-search"></i>
+                <h3>Ничего не найдено</h3>
+                <p>Попробуйте изменить поисковый запрос</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Term Modal -->
+    <div class="modal" id="termModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <span class="modal-category" id="modalCategory"></span>
+            </div>
+            <div class="modal-body">
+                <div class="term-info">
+                    <div class="term-translation">
+                        <h3>Перевод:</h3>
+                        <p id="modalTranslation"></p>
+                    </div>
+                    <div class="term-description">
+                        <h3>Описание:</h3>
+                        <p id="modalDescription"></p>
+                    </div>
+                    <div class="term-example" id="modalExample" style="display: none;">
+                        <h3>Пример использования:</h3>
+                        <p id="modalExampleText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
