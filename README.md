@@ -186,9 +186,8 @@ furry-dictionary/
 
 ## 🐾 Контакты
 
-- **Автор:** Furry Dictionary Team
-- **Email:** contact@furrydictionary.com
-- **GitHub:** [@furry-dictionary](https://github.com/furry-dictionary)
+- **Автор:** @itsfinnik
+- **Email:** itsfinnik@gmail.com
 
 ## 🙏 Благодарности
 
